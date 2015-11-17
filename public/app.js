@@ -1,6 +1,19 @@
+/* global firebaseBaseUrl */
+/* global signUpSecretKey */
+/* global Firebase */
+/* global qr */
 $(document).ready(function() {
     var ref = new Firebase(firebaseBaseUrl), privTextsRef;
+    ref.unauth();
     var authData = ref.getAuth();
+    
+    location.queryString = {};
+    location.search.substr(1).split("&").forEach(function (pair) {
+        if (pair === "") return;
+        var parts = pair.split("=");
+        location.queryString[parts[0]] = parts[1] &&
+            decodeURIComponent(parts[1].replace(/\+/g, " "));
+    });
     
     var updateQrCodeCanvas = function(input) {
         qr.canvas({
@@ -53,19 +66,34 @@ $(document).ready(function() {
           console.log("Login Failed!", error);
          } else {
           console.log("Authenticated successfully with payload:", data);
+
+          if (signUpSecretKey == "" || (typeof location.queryString["s"] !== "undefined" &&
+              signUpSecretKey == location.queryString["s"])) {
+            
+            var usersRef = ref.child("users");
+            usersRef.child(data.uid).set({
+                displayName: data.google.displayName,
+                email: data.google.email,
+                lastLogin: parseInt(Date.now() / 1000)
+              });  
+            
+          }
           
-          var usersRef = ref.child("users");
-          
-          
-          usersRef.child(data.uid).set({
-            displayName: data.google.displayName,
-            email: data.google.email,
-            lastLogin: parseInt(Date.now() / 1000)
+          var userNameRef = ref.child("users/"+data.uid+"/displayName");
+         
+          userNameRef.once("value", function(snap) {
+              if (snap.val() !== null) {
+                  authData = ref.getAuth();
+                  updateLTFunc(data);
+                  updateQrCodeCanvas("qrSamurai loves you!");
+              } else {
+                  ref.unauth();
+              }
+          }, function (err) {
+             ref.unauth();
+             console.log(err);
           });
           
-          authData = ref.getAuth();
-          updateLTFunc(data);
-          updateQrCodeCanvas("qrSamurai loves you!");
          } 
        }, { remember: "sessionOnly", scope: "email" });
     }
