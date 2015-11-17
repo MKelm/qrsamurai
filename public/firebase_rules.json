@@ -1,0 +1,24 @@
+{
+    "rules": {
+      "texts": {
+        "$uid": {
+          "public": {
+            ".write": "auth != null && auth.uid == $uid",
+            ".read": "auth != null",
+            ".indexOn": ["time"]
+          },
+          "private": {
+            ".write": "auth != null && auth.uid == $uid",
+            ".read": "auth != null && auth.uid == $uid",
+            ".indexOn": ["time"]
+          }
+        }
+      },
+      "users": {
+        "$uid": {
+          ".write": "auth != null && auth.uid == $uid",
+          ".read": "auth != null && auth.uid == $uid"
+        }
+      }
+    }
+}

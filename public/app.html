@@ -1,0 +1,76 @@
+<!-- qrSamurai, Copyright (c) Martin Kelm, 2015 -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>qrSamurai - Welcome</title>
+        <meta charset=UTF-8>
+        <meta name=viewport content="width=device-width, initial-scale=1.0">
+        <link rel=stylesheet href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel=stylesheet href="styles.css?2223423473234">
+        <link rel=icon href=favicon.ico type=image/vnd.microsoft.icon>
+    </head>
+    <body id="app">
+        <div class="container">
+            
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="app.html">qrSamurai</a>
+                  </div>
+                  <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a id="link-code-generator" href="#">Code Generator</a></li>
+                      <li><a id="link-paste-bin" href="#">Paste Bin</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><a href="https://twitter.com/idxcodelab">Martin Kelm (c) 2015</a></li>
+                    </ul>
+                  </div>
+                </div>
+            </nav>
+            
+            <div id="text-form">
+              <textarea id="input-text-area"></textarea>
+              <label id="label-save-input-text" for="save-input-text">
+                <input type="checkbox" id="save-input-text" name="save-input-text" value="1" checked="checked">
+                Save text to paste bin
+              </label> 
+              
+              <button id="button-send-input">Send</button>
+              <div class="clear"></div>
+            </div>
+            
+            <div id="code-generator">
+              <canvas id="qr-code"></canvas>
+              <p id="message">Thanks <strong id="user-name"></strong> for your input:</p>
+              <p id="code-result">No input yet.</p>
+            </div>
+            
+            <div id="paste-bin">
+              <h3>Entries</h3>
+              <ul>
+              </ul>
+              <!-- <button id="button-load-next-entries">Load more</button> -->
+            </div>
+            
+            <div id="footer">
+              <button id="button-logout">Logout</button>
+              <p id="user-login-time"></p>
+            </div>
+           
+            <script src="bower_components/jquery/dist/jquery.min.js"></script>
+            <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script> 
+            
+            <script src="bower_components/qr-js/qr.min.js"></script> 
+            <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+            <script src="config.js?2423433392235"></script>
+            <script src="app.js?2423433392235"></script>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "firebase": "qrsamurai",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**",
+    "**/bower_components/jquery/src/**",
+    "**/bower_components/**/bower.json",
+    "**/bower_components/**/package.json",
+    "**/bower_components/**/package.js",
+    "**/bower_components/**/README.md",
+    "**/bower_components/bootstrap/fonts/**",
+    "**/bower_components/bootstrap/grunt/**",
+    "**/bower_components/bootstrap/js/**",
+    "**/bower_components/bootstrap/less/**"
+  ],
+  "rewrites": [ 
+    { "source": "/app/**", "destination": "/app.html" },
+    { "source": "**", "destination": "/index.html" }
+  ]
+}

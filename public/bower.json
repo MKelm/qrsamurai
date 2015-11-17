@@ -1,0 +1,24 @@
+{
+  "name": "qrSamurai",
+  "version": "0.1",
+  "homepage": "https://github.com/MKelm/qrsamurai",
+  "authors": [
+    "Martin Kelm <martinkelm@shrt.ws>"
+  ],
+  "description": "qrSamurai App",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+   "dependencies": {
+    "bootstrap": "*",
+    "jquery": "*",
+    "qr-js": "*"
+  }
+}
