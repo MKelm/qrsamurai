@@ -4,7 +4,6 @@
 /* global qr */
 $(document).ready(function() {
     var ref = new Firebase(firebaseBaseUrl), privTextsRef;
-    ref.unauth();
     var authData = ref.getAuth();
     
     location.queryString = {};
